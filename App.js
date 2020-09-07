@@ -1,21 +1,69 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import {
+  SafeAreaView,
+  StatusBar,
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+  Dimensions,
+} from "react-native";
+import { WebView } from "react-native-webview";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends Component {
+  navStateChanged = (state) => {
+    console.log(state);
+  };
+
+  render() {
+    const userAgentAndroid =
+      "Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30";
+
+    return (
+      <SafeAreaView style={styles.safeView}>
+        <WebView
+          renderLoading={() => (
+            <View style={styles.errorView}>
+              <ActivityIndicator color="red" />
+            </View>
+          )}
+          ref={(e) => (this.webview = e)}
+          renderError={() => (
+            <View style={styles.errorView}>
+              <Text>Some error occoured</Text>
+              <TouchableOpacity
+                onPress={() => this.webview.reload()}
+                style={styles.errorBtn}
+              >
+                <Text style={{ color: "white" }}>retry</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          scalesPageToFit
+          startInLoadingState
+          source={{ uri: "https://www.tazineeats.com/" }}
+          userAgent={userAgentAndroid}
+          onNavigationStateChange={(state) => this.navStateChanged(state)}
+        />
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  errorBtn: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: "tomato",
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  safeView: { marginTop: StatusBar.currentHeight, flex: 1 },
+  errorView: {
+    width: "100%",
+    height: Dimensions.get("window").height,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
