@@ -12,7 +12,7 @@ import {
 import { WebView } from "react-native-webview";
 import Header from "../components/Header";
 
-export default class Home extends Component {
+export default class Orders extends Component {
   navStateChanged = (state) => {
     console.log(state);
   };
@@ -44,7 +44,7 @@ export default class Home extends Component {
           )}
           style={styles.webview}
           startInLoadingState
-          source={{ uri: "https://www.tazineeats.com/" }}
+          source={{ uri: "https://www.tazineeats.com/customer/account/orders" }}
           userAgent={userAgentAndroid}
           javaScriptEnabled={true}
           onNavigationStateChange={(state) => this.navStateChanged(state)}

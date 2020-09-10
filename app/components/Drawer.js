@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, StatusBar, SafeAreaView } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  StatusBar,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import { Icon } from "native-base";
 
 export default class Drawer extends Component {
@@ -37,6 +44,7 @@ export default class Drawer extends Component {
       <SafeAreaView style={styles.container}>
         {this.state.menus.map((item, i) => (
           <DrawerItems
+            navigation={() => this.props.navigation.navigate(item.route)}
             key={i}
             icon={item.icon}
             iconType={item.iconType}
@@ -54,14 +62,14 @@ export default class Drawer extends Component {
 }
 
 const DrawerItems = (props) => (
-  <View style={styles.box}>
+  <TouchableOpacity onPress={() => props.navigation()} style={styles.box}>
     <View style={styles.firstSide}>
       <Icon name={props.icon} type={props.iconType} />
     </View>
     <View style={styles.secondSide}>
       <Text>{props.title}</Text>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
