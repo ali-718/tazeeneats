@@ -47,6 +47,7 @@ export default class Profile extends Component {
           source={{ uri: "https://www.tazineeats.com/customer/account/orders" }}
           userAgent={userAgentAndroid}
           javaScriptEnabled={true}
+          domStorageEnabled={true}
           onNavigationStateChange={(state) => this.navStateChanged(state)}
           injectedJavaScript={
             'document.getElementById("headersection").style.display = "none"'

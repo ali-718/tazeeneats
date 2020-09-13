@@ -20,6 +20,10 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+
+    "android": {
+      "package": "com.tazineeats.co"
+    },
     "platforms": ["android", "ios"]
   }
 }

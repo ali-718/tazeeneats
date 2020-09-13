@@ -45,12 +45,13 @@ export default class Home extends Component {
           style={styles.webview}
           startInLoadingState
           source={{ uri: "https://www.tazineeats.com/" }}
-          userAgent={userAgentAndroid}
-          javaScriptEnabled={true}
-          onNavigationStateChange={(state) => this.navStateChanged(state)}
           injectedJavaScript={
             'document.getElementById("headersection").style.display = "none"'
           }
+          userAgent={userAgentAndroid}
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
+          onNavigationStateChange={(state) => this.navStateChanged(state)}
         />
       </SafeAreaView>
     );

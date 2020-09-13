@@ -47,6 +47,7 @@ export default class Terms extends Component {
           source={{ uri: "https://www.tazineeats.com/pages/Terms-of-Service" }}
           userAgent={userAgentAndroid}
           javaScriptEnabled={true}
+          domStorageEnabled={true}
           onNavigationStateChange={(state) => this.navStateChanged(state)}
           injectedJavaScript={
             'document.getElementById("headersection").style.display = "none"'
