@@ -53,13 +53,7 @@ export default function Header(props) {
               ref={tooltipRef}
               overlayColor="rgba(0,0,0,0.5)"
               backgroundColor="white"
-              containerStyle={{
-                margin: 0,
-                padding: 0,
-                height: 130,
-                justifyContent: "flex-start",
-                width: 180,
-              }}
+              containerStyle={styles.tooTipConatiner}
               popover={
                 <View style={{ width: "100%", padding: 0, margin: 0 }}>
                   {savedLocations.map((item, i) => (
@@ -77,7 +71,7 @@ export default function Header(props) {
             ></Tooltip>
           </TouchableWithoutFeedback>
         </View>
-        <Text style={[styles.white, { fontSize: 14, fontWeight: "bold" }]}>
+        <Text style={[styles.white, { fontSize: 15, fontWeight: "bold" }]}>
           {location}
         </Text>
       </TouchableOpacity>
@@ -111,5 +105,12 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderBottomWidth: 0.2,
     borderColor: "black",
+  },
+  tooTipConatiner: {
+    margin: 0,
+    padding: 0,
+    height: 130,
+    justifyContent: "flex-start",
+    width: 180,
   },
 });
