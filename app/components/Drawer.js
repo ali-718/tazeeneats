@@ -6,6 +6,7 @@ import {
   StatusBar,
   SafeAreaView,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { Icon } from "native-base";
 
@@ -41,7 +42,26 @@ export default class Drawer extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              style={styles.Image}
+              source={{
+                uri:
+                  "https://cdn.pixabay.com/photo/2015/04/20/13/25/burger-731298_960_720.jpg",
+              }}
+            />
+
+            <Text style={styles.userName}>Quick Delivery</Text>
+          </View>
+        </View>
         {this.state.menus.map((item, i) => (
           <DrawerItems
             navigation={() => this.props.navigation.navigate(item.route)}
@@ -56,7 +76,7 @@ export default class Drawer extends Component {
           iconType={"MaterialCommunityIcons"}
           title={"Logout"}
         />
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -76,8 +96,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flex: 1,
-    marginTop: StatusBar.currentHeight,
-    paddingTop: 20,
   },
   box: { width: "100%", flexDirection: "row" },
   firstSide: {
@@ -87,4 +105,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   secondSide: { width: "75%", padding: 10, justifyContent: "center" },
+  Image: {
+    width: 70,
+    height: 70,
+    borderRadius: 100,
+    borderStyle: "solid",
+    borderColor: "white",
+    borderWidth: 3,
+  },
+  topContainer: {
+    width: "100%",
+    padding: 20,
+    justifyContent: "center",
+    backgroundColor: "red",
+    paddingVertical: 30,
+    paddingTop: 60,
+  },
+  userName: {
+    color: "white",
+    marginLeft: 20,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
 });
